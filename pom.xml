@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.monticore.lang.montiarc</groupId>
+        <artifactId>montiarc-examples</artifactId>
+        <version>2.5.0-SNAPSHOT</version>
+    </parent>
+
+
+    <artifactId>montiarc-public-examples</artifactId>
+    <name>MontiArc Public Examples Parent POM</name>
+    <url>http://www.monticore.org/languages/montiarc/</url>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>tcp-ip</module>
+    </modules>
+
+    <!-- == PROJECT SCM ===================================================== -->
+    <scm>
+        <connection>scm:git:git:github.com/arnehaber/montiarc-examples</connection>
+        <developerConnection>scm:git:git:github.com/arnehaber/montiarc-examples</developerConnection>
+        <url>https://github.com/arnehaber/montiarc-examples</url>
+    </scm>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <version>1.7</version>
+                    <configuration>
+                        <extraExtensions>
+                            <arc>java</arc>
+                            <mt>java</mt>
+                        </extraExtensions>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>se-public-nexus</id>
+            <url>http://lab11.se.rwth-aachen.de/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>se-public-nexus</id>
+            <url>http://lab11.se.rwth-aachen.de/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
+
