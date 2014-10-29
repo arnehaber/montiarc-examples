@@ -1,7 +1,7 @@
 # MontiArc TCP/IP-Stack Models and Simulation
 
 Created by Stefan Schubert in his Bachelor Thesis:
-"** Entwicklung und Implementierung des TCP/IP Stacks in MontiArc **"
+**Entwicklung und Implementierung des TCP/IP Stacks in MontiArc**
 carried out at the 
 [Software Engineering Group, RWTH Aachen University](http://www.se-rwth.de/).
 
