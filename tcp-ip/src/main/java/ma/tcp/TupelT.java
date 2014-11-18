@@ -68,4 +68,9 @@ public class TupelT {
         return payload.equals(((TupelT) obj).getPayload());
     }
     
+    public String toString() {
+        String res = payload + " : " + new String(ip);
+        return res;
+    }
+    
 }

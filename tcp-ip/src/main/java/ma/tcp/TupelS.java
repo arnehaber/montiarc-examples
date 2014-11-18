@@ -68,4 +68,9 @@ public class TupelS {
         return true;
     }
     
+    public String toString() {
+        String res = payload + " : " + new String(ip);
+        return res;
+    }
+    
 }

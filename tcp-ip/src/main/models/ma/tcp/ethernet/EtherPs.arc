@@ -35,7 +35,6 @@ import ma.tcp.ManchesterSignal;
  * @date
  */
 component EtherPs {
-    autoconnect port;
 
     port
         in ManchesterSignal fromBus,

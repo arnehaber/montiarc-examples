@@ -54,4 +54,9 @@ public abstract class Frame {
         return true;
     }
     
+    public String toString() {
+        String res = getClass().getSimpleName() + " payload: " + new String(getPayload());
+        return res;
+    }
+    
 }

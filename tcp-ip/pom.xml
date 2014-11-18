@@ -23,6 +23,12 @@
             <type>pom</type>
         </dependency>
 
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
         <!-- MODELPATH DEPENDENCIES -->
         <dependency>
             <groupId>de.monticore</groupId>

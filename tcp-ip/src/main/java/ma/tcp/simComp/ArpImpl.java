@@ -24,8 +24,9 @@ package ma.tcp.simComp;
 
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -91,8 +92,8 @@ public class ArpImpl extends AArp {
                 String[] splitLine;
                 try {
                     // Read the adressTable.txt
-                    BufferedReader in = new BufferedReader(new FileReader(
-                            "src/main/java/ma/tcp/simComp/adressTable.txt"));
+                    InputStream is = getClass().getClassLoader().getResourceAsStream("adressTable.txt");
+                    BufferedReader in = new BufferedReader(new InputStreamReader(is));
                     String line = null;
                     while ((line = in.readLine()) != null) {
                         // Split the found line at the tab
@@ -115,6 +116,8 @@ public class ArpImpl extends AArp {
                             }
                         }
                     }
+                    in.close();
+                    is.close();
                 }
                 catch (IOException e) {
                     e.printStackTrace();

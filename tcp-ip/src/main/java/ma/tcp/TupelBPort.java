@@ -53,4 +53,8 @@ public class TupelBPort extends TupelB {
         return super.equals(obj);
     }
     
+    public String toString() {
+        return "port: " + getPort();
+    }
+    
 }
