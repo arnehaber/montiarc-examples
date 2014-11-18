@@ -11,22 +11,16 @@
     </parent>
     <version>1.0.0-SNAPSHOT</version>
 
-    <properties>
-        <montiarc-lib.version>2.5.0-SNAPSHOT</montiarc-lib.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>de.monticore.lang.montiarc.lib</groupId>
             <artifactId>montiarc-lib-all</artifactId>
-            <version>${montiarc-lib.version}</version>
             <type>pom</type>
         </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -95,35 +89,11 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate license</id>
-                        <goals>
-                            <goal>update-project-license</goal>
-                            <goal>add-third-party</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
 
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>license-maven-plugin</artifactId>
-                    <configuration>
-                        <organizationName>Software Engineering, RWTH
-                            Aachen University</organizationName>
-                        <inceptionYear>2013</inceptionYear>
-                        <licenseName>lgpl_v3</licenseName>
-                        <includes>
-                            <include>**/*.java</include>
-                            <include>**/*.arc</include>
-                            <include>**/*.mt</include>
-                        </includes>
-                    </configuration>
-                </plugin>
                 <!--This plugin's configuration is used to store Eclipse 
                     m2e settings only. It has no influence on the Maven build itself. -->
                 <plugin>
