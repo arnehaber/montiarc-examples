@@ -21,6 +21,7 @@
 
     <modules>
         <module>tcp-ip</module>
+        <module>assembly-line</module>
     </modules>
 
     <!-- == PROJECT SCM ===================================================== -->
