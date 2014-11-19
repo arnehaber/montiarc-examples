@@ -91,8 +91,8 @@ public class ArpImpl extends AArp {
             for (int i = 0; i < 2; i++) {
                 String[] splitLine;
                 try {
-                    // Read the adressTable.txt
-                    InputStream is = getClass().getClassLoader().getResourceAsStream("adressTable.txt");
+                    // Read the addresstable.txt
+                    InputStream is = getClass().getClassLoader().getResourceAsStream("addresstable.txt");
                     BufferedReader in = new BufferedReader(new InputStreamReader(is));
                     String line = null;
                     while ((line = in.readLine()) != null) {

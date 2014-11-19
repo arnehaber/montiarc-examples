@@ -28,8 +28,10 @@ import ma.tcp.TupelS;
  * @brief Component {@code Dns} simulates the DNS Protocol.
  *
  * The component {@code Dns} simulates the reduced behavior of the DNS Protocol.
- * Like everything in the simComp package, the {@code Dns} component only reads a file containing a list of (Name, IP) combinations.
  * If a name is found, the ip gets returned, else nothing gets returned.
+ *
+ * {@sideEffects the IP-Address lookup table is expected in file dns.txt 
+ *               that is loaded from the classpath.}
  *
  * @hint The fact that nothing gets returned if no name is found calls for carefull programming, because if a component requests a wrong name and waits afterwards, it won't terminate. 
  * @author Stefan Schubert

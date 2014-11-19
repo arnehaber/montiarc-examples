@@ -91,8 +91,8 @@ public class RarpImpl extends ARarp {
             for (int i = 0; i < 2; i++) {
                 String[] splitLine;
                 try {
-                    InputStream is = getClass().getClassLoader().getResourceAsStream("adressTable.txt");
-                    // Read the adressTable.txt
+                    // Read the addresstable.txt
+                    InputStream is = getClass().getClassLoader().getResourceAsStream("addresstable.txt");
                     BufferedReader in = new BufferedReader(new InputStreamReader(is));
                     String line = null;
                     while ((line = in.readLine()) != null) {

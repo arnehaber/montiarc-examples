@@ -27,8 +27,11 @@ import ma.tcp.IpFrame;
 /**
  * @brief Component {@code Arp} simulates the Address Resulution Protocol.
  *
- * The component {@code Arp} is a reduction of the ARP functionalities.
- * It reads from a .txt document for known IP-Addresses and returns the belonging MAC-Addresses.
+ * The component {@code Arp} is a reduction of the ARP functionalities
+ * and translates IP- to MAC-Addresses.
+ * 
+ * {@sideEffects the MAC-Address-Table is expected in file addresstable.txt 
+ *               that is loaded from the classpath.}
  *
  * @author Stefan Schubert
  * @date

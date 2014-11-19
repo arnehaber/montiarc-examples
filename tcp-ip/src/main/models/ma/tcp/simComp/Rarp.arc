@@ -27,8 +27,11 @@ import ma.tcp.DataLinkFrame;
 /**
  * @brief Component {@code Rasp} simulates the Reverse Address Resulution Protocol.
  *
- * The component {@code Rarp} is a reduction of the RARP functionalities.
- * It reads from a .txt document for known MAC-Addresses and returns the belonging IP-Addresses.
+ * The component {@code Rarp} is a reduction of the RARP functionalities and
+ * translates MAC-Addresses into IP-Addresses.
+ *
+ * {@sideEffects the MAC-Address-Table is expected in file addresstable.txt 
+ *               that is loaded from the classpath.}
  *
  * @author Stefan Schubert
  * @date
