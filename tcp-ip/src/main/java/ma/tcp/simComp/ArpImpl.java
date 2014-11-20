@@ -22,21 +22,24 @@ package ma.tcp.simComp;
  * #L%
  */
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+
+import com.google.common.collect.Lists;
 
 import ma.tcp.IpFrame;
 import ma.tcp.simComp.gen.AArp;
 
 /**
- * This is a basic simulation of the ARP-service. While the "real" ARP-service is more complex, we
- * just need the feature, to translate IPs into mac adresses. This is implemented by getting an Ip
- * and looking the belonging mac address in a table up. <br>
+ * This is a basic simulation of the ARP-service. While the "real" ARP-service
+ * is more complex, we just need the feature, to translate IPs into mac
+ * adresses. This is implemented by getting an Ip and looking the belonging mac
+ * address in a table up. <br>
  * <br>
  * Copyright (c) 2013 RWTH Aachen. All rights reserved.
  * 
@@ -87,49 +90,56 @@ public class ArpImpl extends AArp {
                     dIp += ".";
                 }
             }
-            
+            List<String> lines = Lists.newArrayList();
+            try {
+                // Read the addresstable.txt
+                InputStream is = getClass().getClassLoader().getResourceAsStream("addresstable.txt");
+                BufferedReader in = new BufferedReader(new InputStreamReader(is));
+                String line = null;
+                while ((line = in.readLine()) != null) {
+                    lines.add(line);
+                }
+                in.close();
+                is.close();
+            }
+            catch (IOException e) {
+                getErrorHandler().getLogger().error("Failed to load IP/MAC mapping", e);
+            }
             for (int i = 0; i < 2; i++) {
-                String[] splitLine;
-                try {
-                    // Read the addresstable.txt
-                    InputStream is = getClass().getClassLoader().getResourceAsStream("addresstable.txt");
-                    BufferedReader in = new BufferedReader(new InputStreamReader(is));
-                    String line = null;
-                    while ((line = in.readLine()) != null) {
-                        // Split the found line at the tab
-                        splitLine = line.split("\t");
-                        if (i == 0) {
-                            if (splitLine[0].equals(sIp)) {
-                                // if the first entry matches the sourceIp, save the secound entry
-                                sSourceMac = splitLine[1];
-                                foundSIp = true;
-                                break;
-                            }
-                        }
-                        else {
-                            if (splitLine[0].equals(dIp)) {
-                                // if the first entry matches the destinationIp, save the secound
-                                // entry
-                                sDestMac = splitLine[1];
-                                foundDIp = true;
-                                break;
-                            }
+                for (String line : lines) {
+                    
+                    String[] splitLine;
+                    
+                    // Split the found line at the tab
+                    splitLine = line.split("-");
+                    if (i == 0) {
+                        if (splitLine[0].equals(sIp)) {
+                            // if the first entry matches the sourceIp, the second entry corresponds to the MAC address.
+                            sSourceMac = splitLine[1];
+                            foundSIp = true;
+                            break;
                         }
                     }
-                    in.close();
-                    is.close();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
+                    else {
+                        if (splitLine[0].equals(dIp)) {
+                            // if the first entry matches the sourceIp, the second entry corresponds to the MAC address.
+                            sDestMac = splitLine[1];
+                            foundDIp = true;
+                            break;
+                        }
+                    }
                 }
             }
             
-            // if we found both entrys, we now have them as mac-adress in string format. now we
+            // if we found both entries, we now have them as mac-address in string
+            // format. now we
             // convert them back to byte[]
             if (foundSIp && foundDIp) {
                 String[] splittedSourceMac = sSourceMac.split(":");
                 String[] splittedDestMac = sDestMac.split(":");
-                if (splittedSourceMac.length == 6 && splittedDestMac.length == 6) { // just to be
+                if (splittedSourceMac.length == 6 && splittedDestMac.length == 6) { // just
+                                                                                    // to
+                                                                                    // be
                                                                                     // sure
                     for (int i = 0; i < splittedSourceMac.length; i++) {
                         sourceMac[i] = Byte.parseByte(splittedSourceMac[i], 16);
@@ -137,7 +147,8 @@ public class ArpImpl extends AArp {
                     }
                 }
                 
-                // Create the new IpFrame by copying everything, except the old ips. The length is
+                // Create the new IpFrame by copying everything, except the old
+                // ips. The length is
                 // now 4 greater, because both source and dest grew 2 bytes
                 byte[] payload = new byte[frame.getPayload().length + 4];
                 for (int i = 0; i < payload.length; i++) {
@@ -167,7 +178,6 @@ public class ArpImpl extends AArp {
      */
     @Override
     protected void timeIncreased() {
-        // TODO Auto-generated method stub
         
     }
     

@@ -57,12 +57,10 @@ public class TupelS {
     public boolean equals(Object obj) {
         for (int i = 0; i < ip.length; i++) {
             if (ip[i] != ((TupelS) obj).getIp()[i]) {
-                System.out.println("Ips ungleich");
                 return false;
             }
         }
         if (!payload.equals(((TupelS) obj).getPayload())) {
-            System.out.println("payload ungleich");
             return false;
         }
         return true;

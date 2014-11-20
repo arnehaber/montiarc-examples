@@ -22,21 +22,24 @@ package ma.tcp.simComp;
  * #L%
  */
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+
+import com.google.common.collect.Lists;
 
 import ma.tcp.DataLinkFrame;
 import ma.tcp.simComp.gen.ARarp;
 
 /**
- * This is a basic simulation of the RARP-service. While the "real" RARP-service is more complex, we
- * just need the feature, to translate mac adresses into IPs. This is implemented by getting a mac
- * address and looking the belonging IP address in a table up. <br>
+ * This is a basic simulation of the RARP-service. While the "real" RARP-service
+ * is more complex, we just need the feature, to translate mac adresses into
+ * IPs. This is implemented by getting a mac address and looking the belonging
+ * IP address in a table up. <br>
  * <br>
  * Copyright (c) 2013 RWTH Aachen. All rights reserved.
  * 
@@ -88,40 +91,45 @@ public class RarpImpl extends ARarp {
                 }
             }
             
+            List<String> lines = Lists.newArrayList();
+            try {
+                // Read the addresstable.txt
+                InputStream is = getClass().getClassLoader().getResourceAsStream("addresstable.txt");
+                BufferedReader in = new BufferedReader(new InputStreamReader(is));
+                String line = null;
+                while ((line = in.readLine()) != null) {
+                    lines.add(line);
+                }
+                in.close();
+                is.close();
+            }
+            catch (IOException e) {
+                getErrorHandler().getLogger().error("Failed to load IP/MAC mapping", e);
+            }
+            
             for (int i = 0; i < 2; i++) {
-                String[] splitLine;
-                try {
-                    // Read the addresstable.txt
-                    InputStream is = getClass().getClassLoader().getResourceAsStream("addresstable.txt");
-                    BufferedReader in = new BufferedReader(new InputStreamReader(is));
-                    String line = null;
-                    while ((line = in.readLine()) != null) {
-                        // Split the found line at the tab
-                        splitLine = line.split("\t");
-                        if (i == 0) {
-                            if (splitLine[1].equals(sSourceMac)) {
-                                // if the first entry matches the sourceIp, save the secound
-                                // entry
-                                sSourceIp = splitLine[0];
-                                foundSMac = true;
-                                break;
-                            }
-                        }
-                        else {
-                            if (splitLine[1].equals(sDestMac)) {
-                                // if the first entry matches the destinationIp, save the
-                                // secound entry
-                                sDestIp = splitLine[0];
-                                foundDMac = true;
-                                break;
-                            }
+                for (String line : lines) {
+                    
+                    String[] splitLine;
+                    
+                    // Split the found line at the tab
+                    splitLine = line.split("-");
+                    if (i == 0) {
+                        if (splitLine[1].equals(sSourceMac)) {
+                            // if second entry matches the MAC, the first corresponds to the IP address.
+                            sSourceIp = splitLine[0];
+                            foundSMac = true;
+                            break;
                         }
                     }
-                    in.close();
-                    is.close();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
+                    else {
+                        if (splitLine[1].equals(sDestMac)) {
+                            // if second entry matches the MAC, the first corresponds to the IP address.
+                            sDestIp = splitLine[0];
+                            foundDMac = true;
+                            break;
+                        }
+                    }
                 }
             }
             
@@ -130,15 +138,20 @@ public class RarpImpl extends ARarp {
             if (foundSMac && foundDMac) {
                 String[] splittedSourceIp = sSourceIp.split("\\.");
                 String[] splittedDestIp = sDestIp.split("\\.");
-                if (splittedSourceIp.length == 4 && splittedDestIp.length == 4) { // just to be sure
+                if (splittedSourceIp.length == 4 && splittedDestIp.length == 4) { // just
+                                                                                  // to
+                                                                                  // be
+                                                                                  // sure
                     for (int i = 0; i < splittedSourceIp.length; i++) {
                         sourceIp[i] = Byte.parseByte(splittedSourceIp[i], 10);
                         destIp[i] = Byte.parseByte(splittedDestIp[i], 10);
                     }
                 }
                 
-                // Create the new DataLinkFrame by copying everything, except the old
-                // ips. The length is now 4 greater, because both source and dest lost 2
+                // Create the new DataLinkFrame by copying everything, except
+                // the old
+                // ips. The length is now 4 greater, because both source and
+                // dest lost 2
                 // bytes
                 byte[] payload = new byte[frame.getPayload().length - 4];
                 for (int i = 0; i < payload.length; i++) {

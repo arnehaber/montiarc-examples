@@ -1,5 +1,6 @@
 package ma.tcp;
 
+
 /*
  * #%L
  * tcp-ip
@@ -47,7 +48,6 @@ public abstract class Frame {
     public boolean equals(Object obj) {
         for (int i = 0; i < payload.length; i++) {
             if (payload[i] != ((Frame) obj).getPayload()[i]) {
-                System.out.println("Payload");
                 return false;
             }
         }
@@ -55,7 +55,7 @@ public abstract class Frame {
     }
     
     public String toString() {
-        String res = getClass().getSimpleName() + " payload: " + new String(getPayload());
+        String res = getClass().getSimpleName() + " payload: " + HelpCollection.convertToBinary(getPayload());
         return res;
     }
     

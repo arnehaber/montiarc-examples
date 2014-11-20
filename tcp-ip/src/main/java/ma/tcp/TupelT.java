@@ -61,7 +61,6 @@ public class TupelT {
     public boolean equals(Object obj) {
         for (int i = 0; i < ip.length; i++) {
             if (ip[i] != ((TupelT) obj).getIp()[i]) {
-                System.out.println("Ip false");
                 return false;
             }
         }
@@ -69,7 +68,7 @@ public class TupelT {
     }
     
     public String toString() {
-        String res = payload + " : " + new String(ip);
+        String res = payload + " : " + HelpCollection.convertToBinary(getIp());
         return res;
     }
     

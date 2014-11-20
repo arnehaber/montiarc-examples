@@ -59,7 +59,7 @@ public class ExecuteLan {
         Tick<String> tick = new Tick<String>();
         
         lan.getFrom1().accept("www.bsp.de/a.html");
-        lan.getFrom2().accept("www.bsp.de/test.html");
+        //lan.getFrom2().accept("www.bsp.de/test.html");
         while (true) {
             lan.getFrom1().accept(tick);
             lan.getFrom2().accept(tick);

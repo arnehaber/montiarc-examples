@@ -217,7 +217,6 @@ public class EtherLlcEncapsImpl extends AEtherLlcEncaps {
      */
     @Override
     protected void timeIncreased() {
-        // TODO Auto-generated method stub
         
     }
     

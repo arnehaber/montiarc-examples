@@ -131,15 +131,8 @@ public class ChecksumCheckImpl extends AChecksumCheck {
             }
             
             byte[] calculatedCs = HelpCollection.convertToByteArray(cs, 2);
-            if (calculatedCs[0] == receivedCs[0] && calculatedCs[1] == receivedCs[1]) { // if
-                                                                                        // calculated
-                                                                                        // checksum
-                                                                                        // and
-                                                                                        // received
-                                                                                        // checksum
-                                                                                        // match, we
-                                                                                        // pass the
-                                                                                        // tupel on
+            // if calculated checksum and received checksum match, we relay the tuple
+            if (calculatedCs[0] == receivedCs[0] && calculatedCs[1] == receivedCs[1]) { 
                 sendToMainControl(tupel);
             }
         }

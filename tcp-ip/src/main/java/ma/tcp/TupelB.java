@@ -69,4 +69,8 @@ public class TupelB {
         return true;
     }
     
+    public String toString() {
+        return "ip: " + HelpCollection.convertToBinary(getIp()) + " payload: " + HelpCollection.convertToBinary(getPayload());
+    }
+    
 }
