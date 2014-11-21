@@ -27,7 +27,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import ma.tcp.TupelS;
-import ma.tcp.http.gen.ADecider;
+import ma.tcp.http.gen.AReplyBroker;
 
 /**
  * This is the implementation of the Decider component. The decider component checks, wether the
@@ -41,10 +41,10 @@ import ma.tcp.http.gen.ADecider;
  * 65
  */
 
-public class DeciderImpl extends ADecider {
+public class ReplyBrokerImpl extends AReplyBroker {
     private Queue<TupelS> queue;
     
-    public DeciderImpl() {
+    public ReplyBrokerImpl() {
         queue = new LinkedList<TupelS>();
     }
     

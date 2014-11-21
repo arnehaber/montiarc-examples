@@ -25,7 +25,7 @@ package ma.tcp.http;
 
 import ma.tcp.TupelS;
 
-testsuite DeciderTest for Decider {
+testsuite ReplyBrokerTest for ReplyBroker {
     //The Strings represent a typical Http-Response and a typical Http-Request
     //Note, that some of the Requests and Responses are taken from www.wikipedia.de, but only, because our main source "Conrads - Datenkommunikation" offers few examples
        

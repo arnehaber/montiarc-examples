@@ -50,7 +50,7 @@ component Http {
         component GenerateHttpRequest generateRequest;
         component Utf8Encode encode;
         component Utf8Decode decode;
-        component Decider decide;
+        component ReplyBroker;
         component Interpreter interpret;
         component GenerateHttpResponse generateResponse;
         
@@ -59,10 +59,10 @@ component Http {
         connect generateRequest.toUtf8Encode -> encode.fromGenerate;        
         connect encode.toTransport -> toTransport;
         connect fromTransport -> decode.fromTransport;
-        connect decode.toDecide -> decide.fromUtf8Decode;        
-        connect decide.toResponse -> generateResponse.fromDecider;
+        connect decode.toDecide -> replyBroker.fromUtf8Decode;        
+        connect replyBroker.toResponse -> generateResponse.fromDecider;
         connect generateResponse.toEncode -> encode.fromResponse;        
-        connect decide.toInterpret -> interpret.inPort;
+        connect replyBroker.toInterpret -> interpret.inPort;
         connect interpret.outPort -> toBrowser;
         
 

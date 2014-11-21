@@ -25,16 +25,16 @@ package ma.tcp.http;
 import ma.tcp.TupelS;
  
 /**
- * @brief Component {@code Decider} is used for deciding, wether the message is a Respond or Request.
+ * @brief Component {@code ReplyBroker} is used for deciding, wether the message is a Respond or Request.
  *
- * Componente {@code Decider} is used to decider, wether a message, we received in the HTTP-Protocol is
+ * Componente {@code ReplyBroker} is used to decider, wether a message, we received in the HTTP-Protocol is
  * a HTTP-GET-Request or HTTP-RESPONSE-Response.
  * Requests get passed on to the {@link GenerateHttpResponse} component and Responses get passed to the {@link Interpreter} component.
  *
  * @author Stefan Schubert
  * @date
  */
-component Decider {
+component ReplyBroker {
     port
         in TupelS fromUtf8Decode,
         out TupelS toResponse,
