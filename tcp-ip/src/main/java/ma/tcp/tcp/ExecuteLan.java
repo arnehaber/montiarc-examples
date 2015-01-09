@@ -56,7 +56,7 @@ public class ExecuteLan {
             }
         });
         lan.setTo1(p2);
-        Tick<String> tick = new Tick<String>();
+        Tick<String> tick = Tick.<String> get();
         
         lan.getFrom1().accept("www.bsp.de/a.html");
         //lan.getFrom2().accept("www.bsp.de/test.html");
