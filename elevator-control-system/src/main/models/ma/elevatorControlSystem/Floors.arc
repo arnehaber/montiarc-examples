@@ -37,7 +37,7 @@ package ma.elevatorControlSystem;
 */
 
 component Floors {
-  behavior timed;
+  timing instant;
 
   autoconnect port;
   

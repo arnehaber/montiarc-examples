@@ -34,7 +34,7 @@ package ma.elevatorControlSystem;
 * the continuous message "false" will transmitted via its outgoing channels {@link light} and {@link flRequest}.
 */
 component FloorControl {
-  behavior timed;
+  timing instant;
 
   port 
     in Boolean clrReq,

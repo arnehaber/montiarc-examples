@@ -31,7 +31,7 @@ package ma.elevatorControlSystem;
 */
 
 component Split {
-  behavior timed;
+  timing instant;
   
   port
     in Integer clrFlRequest,

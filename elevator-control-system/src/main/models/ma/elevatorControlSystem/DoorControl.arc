@@ -39,7 +39,7 @@ package ma.elevatorControlSystem;
 */
 
 component DoorControl {
-  behavior timed;
+  timing instant;
 
   port
     /**

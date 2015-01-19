@@ -24,7 +24,7 @@ package ma.elevatorControlSystem;
  */
 
 component StopNextContinue {
-  behavior timed;
+  timing instant;
 
   port
     in Boolean stopNextFloor,

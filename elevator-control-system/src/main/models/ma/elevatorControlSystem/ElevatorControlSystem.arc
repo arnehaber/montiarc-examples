@@ -70,7 +70,7 @@ package ma.elevatorControlSystem;
  
 component ElevatorControlSystem {
 
-  behavior timed;
+  timing instant;
 
   autoconnect port;
 

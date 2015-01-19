@@ -41,7 +41,7 @@ package ma.elevatorControlSystem;
 *
 */
 component CentralElevatorControl {
-  behavior timed;
+  timing instant;
 
   port
     /**

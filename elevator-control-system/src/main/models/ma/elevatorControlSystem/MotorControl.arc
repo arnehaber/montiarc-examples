@@ -36,7 +36,7 @@ package ma.elevatorControlSystem;
 */
 
 component MotorControl {
-  behavior timed;
+  timing instant;
   
   port
     in Integer motorCom,
